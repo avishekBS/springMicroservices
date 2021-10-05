@@ -8,20 +8,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.codeolate.employee.api.model.Employee;
-import com.codeolate.employee.api.model.EmployeeListWrapper;
-import com.codeolate.employee.api.services.AddEmployeeService;
-import com.codeolate.employee.api.services.GetAllEmployeeService;
+import com.codeolate.employee.api.entity.Employee;
+import com.codeolate.employee.api.entity.EmployeeListWrapper;
+import com.codeolate.employee.api.services.impl.AddEmployeeServiceImpl;
+import com.codeolate.employee.api.services.impl.GetAllEmployeeServiceImpl;
 
 @RestController
 @RequestMapping(path="/employee")
 public class EmployeeResource {
 	
 	@Autowired
-	private AddEmployeeService addEmployeeService;
+	private AddEmployeeServiceImpl addEmployeeService;
 	
 	@Autowired
-	private GetAllEmployeeService getAllEmployeeService;
+	private GetAllEmployeeServiceImpl getAllEmployeeService;
 	
 	@PostMapping()
 	private String addEmployee(@RequestBody Employee employee) {

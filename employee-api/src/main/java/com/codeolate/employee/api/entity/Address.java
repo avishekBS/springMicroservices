@@ -1,4 +1,4 @@
-package com.codeolate.employee.api.model;
+package com.codeolate.employee.api.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

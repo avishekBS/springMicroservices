@@ -1,4 +1,4 @@
-package com.codeolate.employee.api.model;
+package com.codeolate.employee.api.entity;
 
 import java.util.Date;
 import java.util.List;
