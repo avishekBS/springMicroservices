@@ -11,17 +11,9 @@ import com.codeolate.employee.api.repositories.EmployeeRepository;
 public class AddEmployeeService {
 	@Autowired
 	private EmployeeRepository employeeRepository;
-	
-	@Autowired
-	private AddAddressService addAddressService;
 
 	public String addEmployee(Employee employee) {
 		Employee save = employeeRepository.save(employee);
-		
-		/*
-		 * for (Address address : employee.getListofAddress()) {
-		 * address.setEmployee(employee); addAddressService.addAddress(address); }
-		 */
 		if (save == null) {
 			return "Employee details not saved!!";
 		}

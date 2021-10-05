@@ -23,12 +23,12 @@ public class EmployeeResource {
 	@Autowired
 	private GetAllEmployeeService getAllEmployeeService;
 	
-	@PostMapping(path = "/add")
+	@PostMapping()
 	private String addEmployee(@RequestBody Employee employee) {
 		return addEmployeeService.addEmployee(employee);
 	}
 	
-	@GetMapping(path = "/getAll")
+	@GetMapping()
 	public EmployeeListWrapper getAllEmployee() {
 		System.out.println("in getALL....");
 		return getAllEmployeeService.getAllEmployee();
