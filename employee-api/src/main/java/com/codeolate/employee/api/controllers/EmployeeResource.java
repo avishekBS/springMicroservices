@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.codeolate.employee.api.entity.Employee;
 import com.codeolate.employee.api.entity.EmployeeListWrapper;
-import com.codeolate.employee.api.services.AddEmployeeService;
-import com.codeolate.employee.api.services.DeleteEmployeeService;
-import com.codeolate.employee.api.services.GetAllEmployeeService;
-import com.codeolate.employee.api.services.GetEmployeeByIdService;
-import com.codeolate.employee.api.services.GetEmployeeByJoiningYearService;
-import com.codeolate.employee.api.services.GetEmployeeByNameService;
-import com.codeolate.employee.api.services.UpdateEmployeeService;
+import com.codeolate.employee.api.services.Impl.AddEmployeeServiceImpl;
+import com.codeolate.employee.api.services.Impl.DeleteEmployeeServiceImpl;
+import com.codeolate.employee.api.services.Impl.GetAllEmployeeServiceImpl;
+import com.codeolate.employee.api.services.Impl.GetEmployeeByIdServiceImpl;
+import com.codeolate.employee.api.services.Impl.GetEmployeeByJoiningYearServiceImpl;
+import com.codeolate.employee.api.services.Impl.GetEmployeeByNameServiceImpl;
+import com.codeolate.employee.api.services.Impl.UpdateEmployeeServiceImpl;
 
 @RestController
 @RequestMapping(path="/employee")
@@ -31,64 +31,64 @@ public class EmployeeResource {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
-	private AddEmployeeService addEmployeeService;
+	private AddEmployeeServiceImpl addEmployeeServiceImpl;
 	
 	@Autowired
-	private GetAllEmployeeService getAllEmployeeService;
+	private GetAllEmployeeServiceImpl getAllEmployeeServiceImpl;
 	
 	@Autowired
-	private GetEmployeeByIdService getEmployeeByIdService;
+	private GetEmployeeByIdServiceImpl getEmployeeByIdServiceImpl;
 	
 	@Autowired
-	private GetEmployeeByNameService getEmployeeByNameService;
+	private GetEmployeeByNameServiceImpl getEmployeeByNameServiceImpl;
 	
 	@Autowired
-	private GetEmployeeByJoiningYearService getEmployeeByJoiningYearService;
+	private GetEmployeeByJoiningYearServiceImpl getEmployeeByJoiningYearServiceImpl;
 	
 	@Autowired
-	private DeleteEmployeeService deleteEmployeeService;
+	private DeleteEmployeeServiceImpl deleteEmployeeServiceImpl;
 	
 	@Autowired
-	private UpdateEmployeeService updateEmployeeService;
+	private UpdateEmployeeServiceImpl updateEmployeeServiceImpl;
 	
 	@PostMapping()
 	private String addEmployee(@Valid @RequestBody Employee employee) {
 		logger.trace("Add Employee resource");
-		return addEmployeeService.addEmployee(employee);
+		return addEmployeeServiceImpl.addEmployee(employee);
 	}
 	
 	@GetMapping()
 	public EmployeeListWrapper getAllEmployee() {
 		logger.trace("get all Employee resource");
-		return getAllEmployeeService.getAllEmployee();
+		return getAllEmployeeServiceImpl.getAllEmployee();
 	}
 	
 	@GetMapping("/{id}")
 	public Employee getEmployeeById(@PathVariable long id) {
 		logger.trace("get all Employee resource by Employee id");
-		return getEmployeeByIdService.getEmployeeById(id);
+		return getEmployeeByIdServiceImpl.getEmployeeById(id);
 	}
 	@GetMapping("/name/{name}")
 	public EmployeeListWrapper getEmployeeByName(@PathVariable String name) {
 		logger.trace("get all Employee resource by Employee Name");
-		return getEmployeeByNameService.getEmployeeByName(name);
+		return getEmployeeByNameServiceImpl.getEmployeeByName(name);
 	}
 	@GetMapping("/year/{year}")
 	public EmployeeListWrapper getEmployeeByJoiningYear(@PathVariable int year) {
 		logger.trace("get all Employee resource with joining year "+ year);
-		return getEmployeeByJoiningYearService.getEmployeeByJoiningYear(year);
+		return getEmployeeByJoiningYearServiceImpl.getEmployeeByJoiningYear(year);
 	}
 	
 	@PutMapping("/{id}")
 	public Employee updateEmployee(@PathVariable long id, @Valid @RequestBody Employee employee) {
 		logger.trace("update employee id "+ id);
-		return updateEmployeeService.updateEmployee(id, employee);
+		return updateEmployeeServiceImpl.updateEmployee(id, employee);
 	}
 	
 	@DeleteMapping("/{id}")
 	public String deleteEmployeeDetails(@PathVariable long id) {
 		logger.trace("delete employee id "+ id);
-		return deleteEmployeeService.deleteEmployeeDetails(id);
+		return deleteEmployeeServiceImpl.deleteEmployeeDetails(id);
 	}
 
 }
