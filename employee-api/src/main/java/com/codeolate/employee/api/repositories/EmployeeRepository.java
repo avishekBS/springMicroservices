@@ -10,6 +10,7 @@ import com.codeolate.employee.api.entity.Employee;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long>{
+	
 	List<Employee> findByName(String name);
 
 	@Query("from Employee where year(joiningDate) = ?1" )
