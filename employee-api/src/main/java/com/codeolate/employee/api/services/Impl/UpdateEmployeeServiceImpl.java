@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.codeolate.employee.api.entity.Address;
 import com.codeolate.employee.api.entity.Employee;
+import com.codeolate.employee.api.exception.EmployeeNotFoundException;
 import com.codeolate.employee.api.repositories.EmployeeRepository;
 import com.codeolate.employee.api.services.UpdateEmployeeService;
 
@@ -19,7 +20,7 @@ public class UpdateEmployeeServiceImpl implements UpdateEmployeeService{
 	private GetEmployeeByIdServiceImpl getEmployeeByIdServiceImpl;
 	
 	@Override
-	public Employee updateEmployee(Long id, Employee employee) {
+	public Employee updateEmployee(Long id, Employee employee) throws EmployeeNotFoundException {
 		Employee employeeObj = getEmployeeByIdServiceImpl.getEmployeeById(id);
 		if(!employeeObj.getName().equalsIgnoreCase("Id not found")) {
 			if(

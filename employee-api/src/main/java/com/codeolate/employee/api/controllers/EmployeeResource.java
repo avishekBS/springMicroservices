@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.codeolate.employee.api.entity.Employee;
 import com.codeolate.employee.api.entity.EmployeeListWrapper;
+import com.codeolate.employee.api.exception.EmployeeNotFoundException;
 import com.codeolate.employee.api.services.Impl.AddEmployeeServiceImpl;
 import com.codeolate.employee.api.services.Impl.DeleteEmployeeServiceImpl;
 import com.codeolate.employee.api.services.Impl.GetAllEmployeeServiceImpl;
@@ -64,7 +65,7 @@ public class EmployeeResource {
 	}
 	
 	@GetMapping("/{id}")
-	public Employee getEmployeeById(@PathVariable long id) {
+	public Employee getEmployeeById(@PathVariable long id) throws EmployeeNotFoundException {
 		logger.trace("get all Employee resource by Employee id");
 		return getEmployeeByIdServiceImpl.getEmployeeById(id);
 	}
@@ -80,7 +81,7 @@ public class EmployeeResource {
 	}
 	
 	@PutMapping("/{id}")
-	public Employee updateEmployee(@PathVariable long id, @Valid @RequestBody Employee employee) {
+	public Employee updateEmployee(@PathVariable long id, @Valid @RequestBody Employee employee) throws EmployeeNotFoundException {
 		logger.trace("update employee id "+ id);
 		return updateEmployeeServiceImpl.updateEmployee(id, employee);
 	}
