@@ -14,6 +14,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -32,9 +34,11 @@ public class Employee {
 	private Date dateOfBirth;
 	
 	@NotNull
+	//@Pattern(regexp = "^[a-zA-Z0-9]+$")
 	private String panNumber;
 	
 	@NotNull
+	@Size(min = 12, max = 14)
 	private String adharNumber;
 	
 	@JsonFormat(pattern = "yyyy-MM-dd")
