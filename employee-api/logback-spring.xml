@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Else add this in application.properties file
+logging.level.root=info
+logging.level.org.springframework=info
+logging.level.com.codeolate=trace
+logging.level.org.hibernate=ERROR
+logging.file.name=logs/spring-boot-logging.log
+ -->
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <logger name="com.codeolate.employee.api.controllers" level="TRACE" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+<!--    <appender-ref ref="FILE"/> -->
+    </logger>
+    <logger name="com.codeolate.employee.api.services" level="TRACE" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <!-- <appender-ref ref="FILE"/> -->
+    </logger>
+ </configuration>
+ 
+ <!-- logback configuration with spring-profiles
+ 
+ <?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml" />
+    <springProfile name="dev,staging">
+        <logger name="com.codeolate.employee.api.services" level="DEBUG" additivity="false">
+            <appender-ref ref="CONSOLE" />
+        </logger>>
+    </springProfile>
+    <springProfile name="production">
+        <logger name="com.codeolate.employee.api.services" level="WARN" additivity="false">
+            <appender-ref ref="FILE" />
+        </logger>
+    </springProfile>
+ </configuration>
+  -->
+  
+  <!--   add this dependency for conditional spring profiles
+  
+  <dependency>
+   <groupId>org.codehaus.janino</groupId>
+   <artifactId>janino</artifactId>
+   <version>2.7.8</version>
+</dependency>
+  
+  <configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml">
+    <springprofile name="dev,staging">
+        <logger name="com.codeolate.employee.api.services" level="DEBUG" additivity="false">
+            <appender-ref ref="CONSOLE">
+        </appender-ref></logger>>
+    </springprofile>
+    <springprofile name="production">
+    <logger name="com.codeolate.employee.api.services" level="WARN" additivity="false">
+        <appender-ref ref="FILE">
+    </appender-ref></logger>
+    </springprofile>
+    <if condition="property(&quot;spring.profiles.active&quot;).contains(&quot;dev&quot;)">
+        <then>
+            <logger name="com.codeolate.employee.api.services" level="DEBUG" additivity="false">
+                <appender-ref ref="CONSOLE">
+            </appender-ref></logger>
+        </then>
+        <else>
+            <logger name="com.codeolate.employee.api.services" level="WARN" additivity="false">
+                <appender-ref ref="FILE">
+            </appender-ref></logger>
+        </else>
+    </if>
+</include>
+</configuration>
+  
+   -->
