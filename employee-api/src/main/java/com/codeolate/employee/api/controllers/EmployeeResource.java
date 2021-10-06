@@ -16,6 +16,7 @@ import com.codeolate.employee.api.services.AddEmployeeService;
 import com.codeolate.employee.api.services.DeleteEmployeeService;
 import com.codeolate.employee.api.services.GetAllEmployeeService;
 import com.codeolate.employee.api.services.GetEmployeeByIdService;
+import com.codeolate.employee.api.services.GetEmployeeByJoiningYearService;
 import com.codeolate.employee.api.services.GetEmployeeByNameService;
 import com.codeolate.employee.api.services.UpdateEmployeeService;
 
@@ -33,7 +34,10 @@ public class EmployeeResource {
 	private GetEmployeeByIdService getEmployeeByIdService;
 	
 	@Autowired
-	private GetEmployeeByNameService employeeByNameService;
+	private GetEmployeeByNameService getEmployeeByNameService;
+	
+	@Autowired
+	private GetEmployeeByJoiningYearService getEmployeeByJoiningYearService;
 	
 	@Autowired
 	private DeleteEmployeeService deleteEmployeeService;
@@ -57,7 +61,11 @@ public class EmployeeResource {
 	}
 	@GetMapping("/name/{name}")
 	public EmployeeListWrapper getEmployeeByName(@PathVariable String name) {
-		return employeeByNameService.getEmployeeByName(name);
+		return getEmployeeByNameService.getEmployeeByName(name);
+	}
+	@GetMapping("/year/{year}")
+	public EmployeeListWrapper getEmployeeByJoiningYear(@PathVariable int year) {
+		return getEmployeeByJoiningYearService.getEmployeeByJoiningYear(year);
 	}
 	
 	@PutMapping("/{id}")
