@@ -1,5 +1,7 @@
 package com.codeolate.employee.api.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,7 +48,7 @@ public class EmployeeResource {
 	private UpdateEmployeeService updateEmployeeService;
 	
 	@PostMapping()
-	private String addEmployee(@RequestBody Employee employee) {
+	private String addEmployee(@Valid @RequestBody Employee employee) {
 		return addEmployeeService.addEmployee(employee);
 	}
 	
@@ -69,7 +71,7 @@ public class EmployeeResource {
 	}
 	
 	@PutMapping("/{id}")
-	public Employee getAllEmployee(@PathVariable long id, @RequestBody Employee employee) {
+	public Employee getAllEmployee(@PathVariable long id, @Valid @RequestBody Employee employee) {
 		return updateEmployeeService.updateEmployee(id, employee);
 	}
 	

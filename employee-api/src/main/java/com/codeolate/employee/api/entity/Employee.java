@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -21,14 +23,18 @@ public class Employee {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotNull(message = "Please add name for request")
+	@NotEmpty(message = "Name field cant be empty")
 	private String name;
 	
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	@Temporal(value = TemporalType.DATE)
 	private Date dateOfBirth;
 	
+	@NotNull
 	private String panNumber;
 	
+	@NotNull
 	private String adharNumber;
 	
 	@JsonFormat(pattern = "yyyy-MM-dd")
@@ -39,9 +45,7 @@ public class Employee {
 	@JoinColumn(name = "fk_employee_id", referencedColumnName = "id")
 	private List<Address> listofAddress;
 
-	public Employee() {
-		// TODO Auto-generated constructor stub
-	}
+	public Employee() {}
 	
 	public Employee(Long id, String name, Date dateOfBirth, String panNumber, String adharNumber, Date joiningDate,
 			List<Address> listofAddress) {
