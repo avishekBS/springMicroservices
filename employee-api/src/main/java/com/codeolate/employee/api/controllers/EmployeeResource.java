@@ -16,6 +16,7 @@ import com.codeolate.employee.api.services.AddEmployeeService;
 import com.codeolate.employee.api.services.DeleteEmployeeService;
 import com.codeolate.employee.api.services.GetAllEmployeeService;
 import com.codeolate.employee.api.services.GetEmployeeByIdService;
+import com.codeolate.employee.api.services.GetEmployeeByNameService;
 import com.codeolate.employee.api.services.UpdateEmployeeService;
 
 @RestController
@@ -30,6 +31,9 @@ public class EmployeeResource {
 	
 	@Autowired
 	private GetEmployeeByIdService getEmployeeByIdService;
+	
+	@Autowired
+	private GetEmployeeByNameService employeeByNameService;
 	
 	@Autowired
 	private DeleteEmployeeService deleteEmployeeService;
@@ -50,6 +54,10 @@ public class EmployeeResource {
 	@GetMapping("/{id}")
 	public Employee getEmployeeById(@PathVariable long id) {
 		return getEmployeeByIdService.getEmployeeById(id);
+	}
+	@GetMapping("/name/{name}")
+	public EmployeeListWrapper getEmployeeByName(@PathVariable String name) {
+		return employeeByNameService.getEmployeeByName(name);
 	}
 	
 	@PutMapping("/{id}")
