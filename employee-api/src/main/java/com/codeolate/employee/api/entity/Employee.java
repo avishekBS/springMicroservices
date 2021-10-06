@@ -39,6 +39,27 @@ public class Employee {
 	@JoinColumn(name = "fk_employee_id", referencedColumnName = "id")
 	private List<Address> listofAddress;
 
+	public Employee() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Employee(Long id, String name, Date dateOfBirth, String panNumber, String adharNumber, Date joiningDate,
+			List<Address> listofAddress) {
+		this.id = id;
+		this.name = name;
+		this.dateOfBirth = dateOfBirth;
+		this.panNumber = panNumber;
+		this.adharNumber = adharNumber;
+		this.joiningDate = joiningDate;
+		this.listofAddress = listofAddress;
+	}
+
+
+	public Employee(Long id, String name) {
+		this.id = id;
+		this.name = name;
+	}
+
 	public Long getId() {
 		return id;
 	}
