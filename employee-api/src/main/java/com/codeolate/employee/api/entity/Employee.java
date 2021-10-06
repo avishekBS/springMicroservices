@@ -12,20 +12,33 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@RequiredArgsConstructor
+@Builder
 public class Employee {
+	@NonNull
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotNull(message = "Please add name for request")
+	@NonNull
+	@NotBlank(message = "Please add name for request")
 	@NotEmpty(message = "Name field cant be empty")
 	private String name;
 	
@@ -33,11 +46,11 @@ public class Employee {
 	@Temporal(value = TemporalType.DATE)
 	private Date dateOfBirth;
 	
-	@NotNull
+	@NotBlank
 	//@Pattern(regexp = "^[a-zA-Z0-9]+$")
 	private String panNumber;
 	
-	@NotNull
+	@NotBlank
 	@Size(min = 12, max = 14)
 	private String adharNumber;
 	
@@ -48,86 +61,4 @@ public class Employee {
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_employee_id", referencedColumnName = "id")
 	private List<Address> listofAddress;
-
-	public Employee() {}
-	
-	public Employee(Long id, String name, Date dateOfBirth, String panNumber, String adharNumber, Date joiningDate,
-			List<Address> listofAddress) {
-		this.id = id;
-		this.name = name;
-		this.dateOfBirth = dateOfBirth;
-		this.panNumber = panNumber;
-		this.adharNumber = adharNumber;
-		this.joiningDate = joiningDate;
-		this.listofAddress = listofAddress;
-	}
-
-
-	public Employee(Long id, String name) {
-		this.id = id;
-		this.name = name;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Date getDateOfBirth() {
-		return dateOfBirth;
-	}
-
-	public void setDateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	}
-
-	public String getPanNumber() {
-		return panNumber;
-	}
-
-	public void setPanNumber(String panNumber) {
-		this.panNumber = panNumber;
-	}
-
-	public String getAdharNumber() {
-		return adharNumber;
-	}
-
-	public void setAdharNumber(String adharNumber) {
-		this.adharNumber = adharNumber;
-	}
-
-	public Date getJoiningDate() {
-		return joiningDate;
-	}
-
-	public void setJoiningDate(Date joiningDate) {
-		this.joiningDate = joiningDate;
-	}
-
-	public List<Address> getListofAddress() {
-		return listofAddress;
-	}
-
-	public void setListofAddress(List<Address> listofAddress) {
-		this.listofAddress = listofAddress;
-	}
-
-	@Override
-	public String toString() {
-		return "Employee [id=" + id + ", name=" + name + ", dateOfBirth=" + dateOfBirth + ", panNumber=" + panNumber
-				+ ", adharNumber=" + adharNumber + ", joiningDate=" + joiningDate
-				+ "]";
-	}
 }
