@@ -1,4 +1,4 @@
-package com.codeolate.employee.api.services.Impl;
+package com.codeolate.employee.api.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

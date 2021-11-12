@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.codeolate.employee.api.entity.Employee;
 import com.codeolate.employee.api.entity.EmployeeListWrapper;
 import com.codeolate.employee.api.exception.EmployeeNotFoundException;
-import com.codeolate.employee.api.services.Impl.AddEmployeeServiceImpl;
-import com.codeolate.employee.api.services.Impl.DeleteEmployeeServiceImpl;
-import com.codeolate.employee.api.services.Impl.GetAllEmployeeServiceImpl;
-import com.codeolate.employee.api.services.Impl.GetEmployeeByIdServiceImpl;
-import com.codeolate.employee.api.services.Impl.GetEmployeeByJoiningYearServiceImpl;
-import com.codeolate.employee.api.services.Impl.GetEmployeeByNameServiceImpl;
-import com.codeolate.employee.api.services.Impl.UpdateEmployeeServiceImpl;
+import com.codeolate.employee.api.services.impl.AddEmployeeServiceImpl;
+import com.codeolate.employee.api.services.impl.DeleteEmployeeServiceImpl;
+import com.codeolate.employee.api.services.impl.GetAllEmployeeServiceImpl;
+import com.codeolate.employee.api.services.impl.GetEmployeeByIdServiceImpl;
+import com.codeolate.employee.api.services.impl.GetEmployeeByJoiningYearServiceImpl;
+import com.codeolate.employee.api.services.impl.GetEmployeeByNameServiceImpl;
+import com.codeolate.employee.api.services.impl.UpdateEmployeeServiceImpl;
 
 @RestController
 @RequestMapping(path="/employee")

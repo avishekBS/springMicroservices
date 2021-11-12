@@ -1,4 +1,7 @@
-package com.codeolate.employee.api.services.Impl;
+package com.codeolate.employee.api.services.impl;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -6,20 +9,20 @@ import org.springframework.stereotype.Service;
 import com.codeolate.employee.api.entity.Employee;
 import com.codeolate.employee.api.entity.EmployeeListWrapper;
 import com.codeolate.employee.api.repositories.EmployeeRepository;
-import com.codeolate.employee.api.services.GetEmployeeByIdService;
-import com.codeolate.employee.api.services.GetEmployeeByNameService;
+import com.codeolate.employee.api.services.GetAllEmployeeService;
 
 @Service
-public class GetEmployeeByNameServiceImpl implements GetEmployeeByNameService{
+public class GetAllEmployeeServiceImpl implements GetAllEmployeeService {
 
 	@Autowired
 	private EmployeeRepository employeeRepository;
-
+	
 	@Override
-	public EmployeeListWrapper getEmployeeByName(String name) {
+	public EmployeeListWrapper getAllEmployee() {
 		EmployeeListWrapper employeeListWrapper = new EmployeeListWrapper();
-		employeeListWrapper.setListOfEmployee(employeeRepository.findByName(name));
+		List<Employee> listOfEmployees = new ArrayList<Employee>();
+		employeeRepository.findAll().forEach(listOfEmployees::add);
+		employeeListWrapper.setListOfEmployee(listOfEmployees);
 		return employeeListWrapper;
 	}
-
 }
