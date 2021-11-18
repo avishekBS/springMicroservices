@@ -14,5 +14,5 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long>{
 	List<Employee> findByName(String name);
 
 	@Query("from Employee where year(joiningDate) = ?1" )
-	List<Employee> findByJoiningDateBetween(int joiningDate);
+	List<Employee> findByJoiningDateBetween(int joiningYear);
 }
